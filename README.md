@@ -1,4 +1,6 @@
 # SCL P4 Repository with the SCL environment
+
+[![Build Status](https://travis-ci.com/benycze/centos-p4-scl.svg?branch=master)](https://travis-ci.com/benycze/centos-p4-scl)
   
 The repository containes files requird for building and translation of projects related to [P4](https://github.com/p4lang) language.
 
