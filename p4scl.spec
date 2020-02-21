@@ -6,7 +6,6 @@
 # Disable debug info package
 %define debug_package %{nil}
 
-
 %global scl_name_prefix p4lang-
 %global scl_name_base p4-
 %global scl_name_version 1
