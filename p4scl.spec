@@ -15,7 +15,7 @@
 %global scl_ipath %{buildroot}%{_scl_root}
 %global scl_bpath %{_builddir}/pkgbuild
 
-%global build_cpus 2
+%global build_cpus 1
 
 %global nfsmountable 1
 %scl_package %scl
