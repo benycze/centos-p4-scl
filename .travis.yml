@@ -1,0 +1,30 @@
+# Copyright 2020 by the project contributors
+# SPDX-License-Identifier: GPL-3.0-only
+#
+# Author(s): Pavel Benacek <pavel.benacek@gmail.com>
+
+
+# Allow building on mater and devel branches
+branches:
+    only:
+    - master
+
+# Select the OS to use
+os:
+    -linux
+
+# Allow docker to run tests inside it
+services:
+    - docker
+
+# Prepare the docker image in installation stage
+install:
+    - docker build -t localhost/centos-p4-scl .
+
+# Run the test in docker
+script:
+    - docker run -w /centos-p4-scl.git localhost/centos-p4-scl /bin/bash -c "cd /centos-p4-scl.git/test; bash ./test-build.sh"
+
+notifications:
+  email: false
+
