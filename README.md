@@ -75,3 +75,7 @@ SCL build documentation: https://www.softwarecollections.org/en/docs/guide/
 
 * Pavel Benacek 
 
+Contributions from other authors are welcomed!!
+
+P.S. Sorry if something is not perfect but I am using the [Debian](https://www.debian.org) and this is one of my first attemps for RPMs :-). If you want to improve something, feel free to send me a merge request ;-).
+
