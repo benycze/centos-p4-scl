@@ -6,7 +6,6 @@ The repository containes files requird for building and translation of projects 
 
 Currently, the environment allows to build and use:
 * [P4C](https://github.com/p4lang/p4c)  
-* [p4pktgen](https://github.com/p4pktgen/p4pktgen)
 * [Behavioral Model](https://github.com/p4lang/behavioral-model)
 
 ## How to build the package
