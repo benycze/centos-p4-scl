@@ -40,4 +40,12 @@ scl enable p4lang-p4-1 - << -EOF
     
     echo "It seems that we are able to compile everything ..."
 
+    echo "####################################################"
+    echo "It seems that we are able to compile everything ..."
+    echo "####################################################"
+
+    echo "Uninstalling all ..."
+    (cd p4c.git/build; make uninstall;)
+    (cd behavioral-model.git; make uninstall;)
+
 -EOF
