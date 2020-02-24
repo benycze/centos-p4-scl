@@ -29,7 +29,7 @@ BuildRequires: scl-utils-build devtoolset-6 wget binutils cmake3 git autoconf au
 Requires: %scl_require devtoolset-6 
 Requires: scl-utils cmake3 doxygen python-pip python-setuptools automake Judy-devel gmp-devel libpcap-devel
 Requires: libevent-devel libtool flex pkgconfig openssl-devel python-devel readline-devel bison 
-Requires: autoconf libtool python-pip scapy libatomic_ops-devel openssl-devel boost169-devel boost-devel-static
+Requires: autoconf libtool python-pip python36-scapy libatomic_ops-devel openssl-devel boost169-devel boost-devel-static
 
 %description
 This is the main package for %scl Software Collection which can be used on building of p4lang projects on Centos 7 without any container.
