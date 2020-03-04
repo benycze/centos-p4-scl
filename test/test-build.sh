@@ -20,7 +20,7 @@ scl enable p4lang-p4-1 - << -EOF
     cd p4c.git
     mkdir build extensions
     cd build 
-    cmake3 ..
+    cmake3 -DBoost_DEBUG=on ..
     make -j1
     make install
     popd

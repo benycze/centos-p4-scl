@@ -158,8 +158,8 @@ cat >> %{buildroot}%{_scl_scripts}/enable << -EOF
 source scl_source enable devtoolset-6
 # Enable the remaining parts for the P4 scl
 export PATH="%{_bindir}:%{_sbindir}\${PATH:+:\${PATH}}"
-export LIBRARY_PATH="/usr/local/lib:%{_libdir}:%{_scl_root}/usr/lib\${LIBRARY_PATH:+:\${LIBRARY_PATH}}"
-export LD_LIBRARY_PATH="/usr/local/lib:%{_libdir}:%{_scl_root}/usr/lib\${LD_LIBRARY_PATH:+:\${LD_LIBRARY_PATH}}"
+export LIBRARY_PATH="/usr/lib64/boost169:/usr/local/lib:%{_libdir}:%{_scl_root}/usr/lib\${LIBRARY_PATH:+:\${LIBRARY_PATH}}"
+export LD_LIBRARY_PATH="/usr/lib64/boost169:/usr/local/lib:%{_libdir}:%{_scl_root}/usr/lib\${LD_LIBRARY_PATH:+:\${LD_LIBRARY_PATH}}"
 export MANPATH="%{_mandir}:\${MANPATH:-}"
 export PKG_CONFIG_PATH="/usr/local/lib/pkgconfig:%{_libdir}/pkgconfig:%{_scl_root}/usr/lib/pkgconfig\${PKG_CONFIG_PATH:+:\${PKG_CONFIG_PATH}}"
 export PYTHONPATH="/usr/local/lib64/python2.7/site-packages:%{_scl_root}/usr/lib64/python2.7/site-packages\${PYTHONPATH:+:\${PYTHONPATH}}"
@@ -168,7 +168,7 @@ export CPLUS_INCLUDE_PATH="/usr/local/include:%{_scl_root}/usr/include\${CPLUS_I
 
 # Setup boost environment to newest version
 export BOOST_INCLUDEDIR=/usr/include/boost169
-export BOOST_LIBRARYDIR=/usr/lib64/:/usr/lib64/boost169
+export BOOST_LIBDIR=/usr/lib64/boost169
 
 echo "*************************************************************************"
 echo "WARNING: Use cmake3 instead of cmake"
