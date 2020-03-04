@@ -168,7 +168,7 @@ export CPLUS_INCLUDE_PATH="/usr/local/include:%{_scl_root}/usr/include\${CPLUS_I
 
 # Setup boost environment to newest version
 export BOOST_INCLUDEDIR=/usr/include/boost169
-export BOOST_LIBRARYDIR=/usr/lib64/:/usr/lib64/boost169
+export BOOST_LIBRARYDIR=/usr/lib64/boost169
 
 echo "*************************************************************************"
 echo "WARNING: Use cmake3 instead of cmake"
