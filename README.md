@@ -28,7 +28,7 @@ The package has a dependency on additional devtoolset packages. Therefore, you n
 * automake 
 * libtool
 * python-pip
-* libatomic_ops-devel
+* libatomic\_ops-devel
 * bison
 * flex
 * openssl-devel
