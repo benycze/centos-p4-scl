@@ -36,6 +36,12 @@ The package has a dependency on additional devtoolset packages. Therefore, you n
 * boost-devel-static
 * libffi-devel
 
+Currently available spec files:
+
+* p4scl.spec - SPEC file with libs to build mentioned projects.
+* p4scl-tool.spec - SPEC file with tools (p4c, behavioral model, p4pktgen). It requies packages RPM packages builded from the `p4scl.spec` file. The environment contains everything from p4scl.spec packages.
+
+
 In Centos 7, these packages are available in `centos-release-scl-rh` or `centos-release-scl`. So, you need to additionaly install these
 packages:
 
