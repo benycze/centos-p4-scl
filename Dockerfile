@@ -18,4 +18,4 @@ COPY . /centos-p4-scl.git
 WORKDIR /centos-p4-scl.git
 
 # Build & install all rpm packages
-RUN compile-and-install.sh
+RUN ./compile-and-install.sh
