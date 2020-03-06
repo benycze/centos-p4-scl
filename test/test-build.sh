@@ -19,7 +19,7 @@ scl enable p4lang-p4-1 - << -EOF
         mkdir build extensions
         cd build 
         cmake3 -DBoost_DEBUG=on ..
-        make -j1
+        make -j2
         make install
         make uninstall 
     
@@ -37,7 +37,7 @@ scl enable p4lang-p4-1 - << -EOF
         cd behavioral-model.git
         bash autogen.sh
         ./configure
-        make -j1
+        make -j2
         make install
         make uninstall
 
