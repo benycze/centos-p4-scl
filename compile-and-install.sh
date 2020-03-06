@@ -16,9 +16,7 @@ echo "Compiling & installing the P4 ENV package"
 echo "#####################################################"
 
 rpmbuild -bb p4scl.spec --define 'scl p4lang-p4-1'
-RET = $?
-echo "Return $RET"
-if [ $RET -ne 0 ];then
+if [ $? -ne 0 ];then
     echo "Error during the RPM build"
     exit 1
 fi
@@ -31,8 +29,6 @@ echo "Compiling & intalling the P4 TOOLS package"
 echo "#####################################################"
 
 rpmbuild -bb p4scl-tool.spec --define 'scl p4lang-p4devel-1'
-RET = $?
-echo "Return $RET"
 if [ $? -ne 0 ];then
     echo "Error during the RPM build"
     exit 1
