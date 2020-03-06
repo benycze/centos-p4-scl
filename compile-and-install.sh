@@ -1,4 +1,4 @@
-#!/usr/bin env bash
+#!/usr/bin/env bash
 
 echo "#####################################################"
 echo "Removing everything related to the P4"
