@@ -23,7 +23,8 @@ install:
 
 # Run the test in docker
 script:
-    - docker run -w /centos-p4-scl.git localhost/centos-p4-scl /bin/bash -c "cd /centos-p4-scl.git/test; bash ./test-build.sh"
+    - docker run -w /centos-p4-scl.git localhost/centos-p4-scl /bin/bash -c "cd /centos-p4-scl.git/test; bash ./test-build.sh p4c"
+    - docker run -w /centos-p4-scl.git localhost/centos-p4-scl /bin/bash -c "cd /centos-p4-scl.git/test; bash ./test-build.sh bmv2"
 
 notifications:
   email: false

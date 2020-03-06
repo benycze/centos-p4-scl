@@ -8,44 +8,44 @@
 scl enable p4lang-p4-1 - << -EOF
 
     set -e
+   
+    if [ $1 = "p4c" ]; then 
+        echo "####################################################"
+        echo Testing compilation of P4C
+        echo "####################################################"
+        
+        git clone --recursive https://github.com/p4lang/p4c p4c.git
+        cd p4c.git
+        mkdir build extensions
+        cd build 
+        cmake3 -DBoost_DEBUG=on ..
+        make -j1
+        make install
+        make uninstall 
     
-    rm -rf *.git
-    
-    echo "####################################################"
-    echo Testing compilation of P4C
-    echo "####################################################"
-    
-    git clone --recursive https://github.com/p4lang/p4c p4c.git
-    pushd .
-    cd p4c.git
-    mkdir build extensions
-    cd build 
-    cmake3 -DBoost_DEBUG=on ..
-    make -j1
-    make install
-    popd
-    
-    echo "####################################################"
-    echo Testing compilation of behavioral model
-    echo "####################################################"
-    
-    pushd .
-    git clone --recursive https://github.com/p4lang/behavioral-model behavioral-model.git
-    cd behavioral-model.git
-    bash autogen.sh
-    ./configure
-    make -j1
-    make install
-    popd
-    
-    echo "It seems that we are able to compile everything ..."
+        echo "P4C is possible to build ..."
+        exit 0
+    fi
+   
 
-    echo "####################################################"
-    echo "It seems that we are able to compile everything ..."
-    echo "####################################################"
+    if [ $1 = "bmv2" ]; then 
+        echo "####################################################"
+        echo Testing compilation of behavioral model
+        echo "####################################################"
+        
+        git clone --recursive https://github.com/p4lang/behavioral-model behavioral-model.git
+        cd behavioral-model.git
+        bash autogen.sh
+        ./configure
+        make -j1
+        make install
+        make uninstall
 
-    echo "Uninstalling all ..."
-    (cd p4c.git/build; make uninstall;)
-    (cd behavioral-model.git; make uninstall;)
+        echo "bmv2 is possible to build ..."
+        exit 1
+    fi
+    
+
+exit 0
 
 -EOF
