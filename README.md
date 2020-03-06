@@ -8,7 +8,7 @@ Currently, the environment allows to build and use:
 * [P4C](https://github.com/p4lang/p4c)  
 * [Behavioral Model](https://github.com/p4lang/behavioral-model)
 
-Another script prepares the environment with:
+Another script prepares the environment with (currenty it is in the BETA stage):
 * [p4pktgen](https://github.com/p4pktgen/p4pktgen)
 * P4C tools and Behavioral Model
 
