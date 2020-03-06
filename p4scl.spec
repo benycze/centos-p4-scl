@@ -65,9 +65,9 @@ scl enable devtoolset-6 - << -EOF
     export CFLAGS="-g0 -O2" 
     export PY_PREFIX=%{_scl_root}/usr
 
-    echo #####################################################
+    echo "#####################################################"
     echo "Build the thrift library"
-    echo #####################################################
+    echo "#####################################################"
     cd %{scl_bpath}
     pushd .
     wget -O thrift-0.11.0.tar.gz https://github.com/apache/thrift/archive/0.11.0.tar.gz
@@ -82,9 +82,9 @@ scl enable devtoolset-6 - << -EOF
     # Some libs need to be installed in root directory because of the cmake and others.
     # We will install them to the /usr/local path
 
-    echo #####################################################
+    echo "#####################################################"
     echo "Build the nanomsg library"
-    echo #####################################################
+    echo "#####################################################"
     pushd .
     wget -O nanomsg-1.0.0.tar.gz https://github.com/nanomsg/nanomsg/archive/1.0.0.tar.gz
     tar -xvzf nanomsg-1.0.0.tar.gz 
@@ -95,9 +95,9 @@ scl enable devtoolset-6 - << -EOF
     make -j%{build_cpus}
     popd
 
-    echo #####################################################
+    echo "#####################################################"
     echo "Build the protobuf library"
-    echo #####################################################
+    echo "#####################################################"
     pushd .
     git clone https://github.com/google/protobuf.git protobuf;
     cd protobuf;
@@ -107,9 +107,9 @@ scl enable devtoolset-6 - << -EOF
     make -j%{build_cpus} 
     popd
     
-    echo #####################################################
+    echo "#####################################################"
     echo "Install new gc library"
-    echo #####################################################
+    echo "#####################################################"
     pushd .
     wget https://github.com/ivmai/bdwgc/releases/download/v7.4.18/gc-7.4.18.tar.gz
     tar -xvzf gc-7.4.18.tar.gz
@@ -136,9 +136,9 @@ scl enable devtoolset-6 - << -EOF
     export CFLAGS="-g0 -O2" 
     export PY_PREFIX=%{_scl_root}/usr
 
-    echo #####################################################
+    echo "#####################################################"
     echo "Library & tool install"
-    echo #####################################################
+    echo "#####################################################"
 
     cd %{scl_bpath}
     
