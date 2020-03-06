@@ -29,3 +29,6 @@ echo "Installing P4 TOOLS ..."
 yum localinstall -y ~/rpmbuild/RPMS/x86_64/*
 
 echo "We are done ...."
+echo "You can run following commands:"
+echo "  - scl enable p4lang-p4-1 bash --> to start the environment without tools"
+echo "  - scl enable p4lang-p4devel-1 bash --> to start the environment with p4c, bmv2 and p4pktgen"
