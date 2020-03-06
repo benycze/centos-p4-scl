@@ -166,5 +166,5 @@ export CPLUS_INCLUDE_PATH="%{_scl_root}/usr/include\${CPLUS_INCLUDE_PATH:+:\${CP
 %{_root_sysconfdir}/rpm/macros.%{scl}-config
 
 %changelog
-* Wed Feb 19 2020 Pavel Benacek &lt;pavel.benacek@gmail.com&gt; 1-0
+* Wed Mar 9 2020 Pavel Benacek &lt;pavel.benacek@gmail.com&gt; 1-0
 - Initial package for the tool building
