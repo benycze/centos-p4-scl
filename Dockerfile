@@ -16,6 +16,3 @@ RUN yum install -y $DEPS
 RUN mkdir /centos-p4-scl.git
 COPY . /centos-p4-scl.git
 WORKDIR /centos-p4-scl.git
-
-# Build & install all rpm packages
-RUN ./compile-and-install.sh
