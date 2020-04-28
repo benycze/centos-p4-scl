@@ -72,11 +72,10 @@ Currently available spec files:
 * p4scl-tool.spec - SPEC file with tools (p4c, behavioral model, p4pktgen). It requies packages RPM packages builded from the `p4scl.spec` file. The environment contains everything from p4scl.spec packages.
 
 
-In Centos 8, these packages are available in `centos-release-scl-rh` or `centos-release-scl`. So, you need to additionaly install these
-packages:
+In Centos 8, install the EPEL and dnf plugins:
 
 ```
-dnf install epel-release
+dnf install epel-release dnf-plugins-core
 ```
 
 We also need to enable the PowerTools repository and mariadb-devel module (to get some libs):
