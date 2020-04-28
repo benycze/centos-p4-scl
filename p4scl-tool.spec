@@ -132,7 +132,7 @@ scl enable p4lang-p4 - << -EOF
     (cd nnpy.git; pip2 install --compile --root=%{scl_ipath} .)
     # Requirements are installed manually because we are not able to install python unit test tool
     (cd p4pktgen.git; 
-     pip2 install --compile --root=%{scl_ipath}  enum34==1.1.6 functools32==3.2.3.post2 graphviz==0.8 scapy==2.4.3 subprocess32==3.5.3 z3-solver==4.8.0.0.post1; 
+     pip2 install --compile --root=%{scl_ipath}  functools32==3.2.3.post2 graphviz==0.8 scapy==2.4.3 subprocess32==3.5.3 z3-solver==4.8.0.0.post1;
      pip2 install --compile --root=%{scl_ipath} .)
 
 -EOF
