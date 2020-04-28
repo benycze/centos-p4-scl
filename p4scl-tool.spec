@@ -10,15 +10,15 @@
 %define _python_bytecompile_errors_terminate_build 0
 
 %global scl_name_prefix p4lang-
-%global scl_name_base p4devel-
-%global scl_name_version 1
+%global scl_name_base p4devel
 
-%global scl %{scl_name_prefix}%{scl_name_base}%{scl_name_version}
+%global scl %{scl_name_prefix}%{scl_name_base}
 
 %global scl_ipath %{buildroot}%{_scl_root}
 %global scl_bpath %{_builddir}/pkgbuild
 
-%global build_cpus 3
+#%global build_cpus 3
+%global build_cpus 8
 
 %global nfsmountable 1
 %scl_package %scl
@@ -28,8 +28,8 @@ Name: %scl_name
 Version: 1
 Release: 1%{?dist}
 License: GPLv3+
-BuildRequires:p4lang-p4-1 libffi-devel
-Requires: %scl_require p4lang-p4-1
+BuildRequires:p4lang-p4 libffi-devel
+Requires: p4lang-p4
 Requires: libffi-devel
 
 %description
@@ -56,7 +56,7 @@ Package shipping essential configuration macros to build %scl Software Collectio
 
 
 # Enable the environment and install all required tools
-scl enable p4lang-p4-1 - << -EOF
+scl enable p4lang-p4 - << -EOF
     set -e
     # Remove the build directory and create it again
     rm -rf %{scl_bpath}
@@ -111,7 +111,7 @@ scl enable p4lang-p4-1 - << -EOF
 # #########################################################
 # Install libs & tools
 
-scl enable p4lang-p4-1 - << -EOF
+scl enable p4lang-p4 - << -EOF
     set -e
     
     export CXXFLAGS="-g0 -O2" 
@@ -132,7 +132,7 @@ scl enable p4lang-p4-1 - << -EOF
     (cd nnpy.git; pip2 install --compile --root=%{scl_ipath} .)
     # Requirements are installed manually because we are not able to install python unit test tool
     (cd p4pktgen.git; 
-     pip2 install --compile --root=%{scl_ipath}  enum34==1.1.6 functools32==3.2.3.post2 graphviz==0.8 scapy==2.4.3 subprocess32==3.5.3 thrift==0.11.0 z3-solver==4.8.0.0.post1; 
+     pip2 install --compile --root=%{scl_ipath}  enum34==1.1.6 functools32==3.2.3.post2 graphviz==0.8 scapy==2.4.3 subprocess32==3.5.3 z3-solver==4.8.0.0.post1; 
      pip2 install --compile --root=%{scl_ipath} .)
 
 -EOF
@@ -142,7 +142,7 @@ scl enable p4lang-p4-1 - << -EOF
 
 cat >> %{buildroot}%{_scl_scripts}/enable << -EOF
 # Enable the environment for the build of P4 tools
-source scl_source enable p4lang-p4-1
+source scl_source enable p4lang-p4
 # Enable the remaining parts for the P4 scl
 export PATH="%{_scl_root}/usr/bin:%{_scl_root}/usr/local/bin:%{_bindir}:%{_sbindir}\${PATH:+:\${PATH}}"
 export LIBRARY_PATH="%{_libdir}:%{_scl_root}/usr/lib:%{_scl_root}/usr/lib64\${LIBRARY_PATH:+:\${LIBRARY_PATH}}"
@@ -166,5 +166,9 @@ export CPLUS_INCLUDE_PATH="%{_scl_root}/usr/include\${CPLUS_INCLUDE_PATH:+:\${CP
 %{_root_sysconfdir}/rpm/macros.%{scl}-config
 
 %changelog
-* Wed Mar 9 2020 Pavel Benacek &lt;pavel.benacek@gmail.com&gt; 1-0
+
+* Tue Apr 28 2020 Pavel Benacek %lt;pavel.benacek@gmail.com&gt; 1-1
+- Transformation of the spec file to Centos 8
+
+* Mon Mar 9 2020 Pavel Benacek &lt;pavel.benacek@gmail.com&gt; 1-0
 - Initial package for the tool building

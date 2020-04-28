@@ -7,34 +7,64 @@ The repository containes files requird for building and translation of projects 
 Currently, the environment allows to build and use:
 * [P4C](https://github.com/p4lang/p4c)  
 * [Behavioral Model](https://github.com/p4lang/behavioral-model)
-
-Another script prepares the environment with (currenty it is in the BETA stage):
 * [p4pktgen](https://github.com/p4pktgen/p4pktgen)
-* P4C tools and Behavioral Model
 
 ## How to build packages
 
-*This SCL environment is prepared for the Centos 7 Release*
+*This SCL environment is prepared for the Centos 8 Release*
 
 The package has a dependency on additional devtoolset packages. Therefore, you need to be able to install such packages to build it:
-* scl-utils-build 
-* rpm-build
-* devtoolset-6
-* wget 
-* binutils 
-* cmake3
-* git 
-* autoconf 
-* automake 
-* libtool
-* python-pip
-* libatomic\_ops-devel
+* autoconf
+* automake
+* binutils
 * bison
 * flex
+* gcc
+* gcc-c++
+* gdb
+* glibc-devel
+* libtool
+* make
+* pkgconf
+* pkgconf-m4
+* pkgconf-pkg-config
+* redhat-rpm-config
+* rpm-build
+* rpm-sign
+* strace
+* asciidoc
+* byacc
+* ctags
+* diffstat
+* git 
+* intltool
+* jna 
+* ltrace
+* patchutils
+* perl-Fedora-VSP
+* perl-generators
+* pesign
+* source-highlight
+* systemtap
+* valgrind
+* valgrind-devel
+* cmake
+* expect
+* rpmdevtools
+* rpmlint
+* scl-utils
+* scl-utils-build
+* wget
+* binutils
+* cmake
+* python2-pip
+* python3-pip
 * openssl-devel
 * boost169-devel
-* boost-devel-static
+* boosti169-static
 * libffi-devel
+* boost-devel
+
 
 Currently available spec files:
 
@@ -42,45 +72,45 @@ Currently available spec files:
 * p4scl-tool.spec - SPEC file with tools (p4c, behavioral model, p4pktgen). It requies packages RPM packages builded from the `p4scl.spec` file. The environment contains everything from p4scl.spec packages.
 
 
-In Centos 7, these packages are available in `centos-release-scl-rh` or `centos-release-scl`. So, you need to additionaly install these
+In Centos 8, these packages are available in `centos-release-scl-rh` or `centos-release-scl`. So, you need to additionaly install these
 packages:
 
 ```
-yum install centos-release-scl-rh epel-release
+dnf install epel-release
+```
+
+We also need to enable the PowerTools repository and mariadb-devel module (to get some libs):
+
+```
+dnf config-manager --set-enabled PowerTools
+dnf module enable mariadb-devel
 ```
 
 Install following packages which are required for the build:
 
 ```
-yum install scl-utils scl-utils-build rpm-build devtoolset-6 wget binutils cmake3 git autoconf automake libtool python-pip libatomic_ops-devel bison flex openssl-devel boost169-devel boost-devel-static
+dnf install autoconf automake binutils bison flex gcc gcc-c++ gdb glibc-devel libtool make pkgconf pkgconf-m4 pkgconf-pkg-config redhat-rpm-config rpm-build rpm-sign strace asciidoc byacc ctags diffstat git intltool jna ltrace patchutils perl-Fedora-VSP perl-generators pesign source-highlight systemtap valgrind valgrind-devel cmake expect rpmdevtools rpmlint scl-utils scl-utils-build wget binutils cmake python2-pip python3-pip openssl-devel boost169-devel boost169-static libffi-devel boost-devel python36-devel python2-devel Judy-devel libpcap-devel gc-devel
 ```
 
 The P4 Environment package can be builded like following:
 
-
 ```
-rpmbuild -bb p4scl.spec --define 'scl p4lang-p4-1'
+rpmbuild -bb p4scl.spec --define 'scl p4lang-p4'
 ```
 
 Install generated RPMS (find the rpmbuild folder):
 
 ```
-yum localinstall ~/rpmbuild/RPMS/*/*.rpm
+dnf localinstall ~/rpmbuild/RPMS/*/*.rpm
 ```
 
 After the instalation you can run the environment:
 
 ```
-scl enable p4lang-p4-1 bash
+scl enable p4lang-p4 bash
 ```
 
 Very similarly can be build the package with tools. You can also run the `compile-and-install.sh` script which removes all `p4lang` packages in the system. After that, it build RPM packages and install everything from scratch. You can also inspect that file to see how you can build all RPM packages.
-
-## How to test the build inside the environment
-
-If you want to test the build, you can run the `test/test-build.sh` script which tries to translate and install packages using the `make install`. 
-
-##
 
 ## Sources
 
