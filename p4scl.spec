@@ -151,7 +151,7 @@ export LIBRARY_PATH="/usr/lib64/boost169:/usr/local/lib:/usr/local/lib64:%{_libd
 export LD_LIBRARY_PATH="/usr/lib64/boost169:/usr/local/lib:/usr/local/lib64:%{_libdir}:%{_scl_root}/usr/lib\${LD_LIBRARY_PATH:+:\${LD_LIBRARY_PATH}}"
 export MANPATH="%{_mandir}:\${MANPATH:-}"
 export PKG_CONFIG_PATH="/usr/local/lib/pkgconfig:%{_libdir}/pkgconfig:%{_scl_root}/usr/lib/pkgconfig\${PKG_CONFIG_PATH:+:\${PKG_CONFIG_PATH}}"
-export PYTHONPATH="/usr/local/lib64/python2.7/site-packages:%{_scl_root}/usr/lib/python2.7/site-packages\${PYTHONPATH:+:\${PYTHONPATH}}"
+export PYTHONPATH="/usr/local/lib64/python2.7/site-packages:%{_scl_root}/usr/lib64/python2.7/site-packages\${PYTHONPATH:+:\${PYTHONPATH}}"
 export C_INCLUDE_PATH="/usr/local/include:%{_scl_root}/usr/include\${C_INCLUDE_PATH:+:\${C_INCLUDE_PATH}}"
 export CPLUS_INCLUDE_PATH="/usr/local/include:%{_scl_root}/usr/include\${CPLUS_INCLUDE_PATH:+:\${CPLUS_INCLUDE_PATH}}"
 
