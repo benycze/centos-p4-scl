@@ -30,7 +30,7 @@ Requires: redhat-rpm-config rpm-build rpm-sign strace asciidoc byacc ctags diffs
 Requires:perl-Fedora-VSP perl-generators pesign source-highlight systemtap valgrind valgrind-devel expect rpmdevtools rpmlint
 Requires: scl-utils-build wget git python2-pip python3-pip boost169-devel libatomic_ops openssl-devel boost169-static boost
 Requires: scl-utils python2-setuptools python3-setuptools Judy-devel gmp-devel libpcap
-Requires: libevent-devel openssl-devel readline-devel libpcap-devel gc-devel
+Requires: libevent-devel openssl-devel readline-devel libpcap-devel gc-devel python2-enum34
 Requires: python3-scapy  boost169-devel boost169-static boost python36-devel python2-devel python2-six python3-six
 
 %description
