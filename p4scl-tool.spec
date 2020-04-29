@@ -18,7 +18,6 @@
 %global scl_bpath %{_builddir}/pkgbuild
 
 %global build_cpus 3
-#%global build_cpus 8
 
 %global nfsmountable 1
 %scl_package %scl
