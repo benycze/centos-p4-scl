@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# Warning: the --nogpgcheck is used because it is possible to run the
+# installation in my docker but it is not possible to run it inside
+# the travis docker.
 
 echo "#####################################################"
 echo "Removing everything related to the P4"
@@ -23,7 +26,7 @@ if [ $? -ne 0 ];then
 fi
 
 echo "Installing P4 ENV ..."
-dnf localinstall -y ~/rpmbuild/RPMS/x86_64/*
+dnf localinstall --nogpgcheck  -y ~/rpmbuild/RPMS/x86_64/*
 
 echo "#####################################################"
 echo "Compiling & intalling the P4 TOOLS package"
@@ -37,7 +40,7 @@ if [ $? -ne 0 ];then
 fi
 
 echo "Installing P4 TOOLS ..."
-dnf localinstall -y ~/rpmbuild/RPMS/x86_64/*
+dnf localinstall --nogpgcheck -y ~/rpmbuild/RPMS/x86_64/*
 
 echo "We are done ...."
 echo "You can run following commands:"
