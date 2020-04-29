@@ -13,7 +13,7 @@ Currently, the environment allows to build and use:
 
 *This SCL environment is prepared for the Centos 8 Release*
 
-The package has a dependency on additional devtoolset packages. Therefore, you need to be able to install such packages to build it:
+The following dependencies are required to build RPM packages (this is typical development tools on Centos):
 * autoconf
 * automake
 * binutils
@@ -68,11 +68,11 @@ The package has a dependency on additional devtoolset packages. Therefore, you n
 
 Currently available spec files:
 
-* p4scl.spec - SPEC file with libs to build mentioned projects.
-* p4scl-tool.spec - SPEC file with tools (p4c, behavioral model, p4pktgen). It requies packages RPM packages builded from the `p4scl.spec` file. The environment contains everything from p4scl.spec packages.
+* `p4scl.spec` - SPEC file with libs to build mentioned projects.
+* `p4scl-tool.spec` - SPEC file with tools (p4c, behavioral model, p4pktgen). It requies packages RPM packages builded from the `p4scl.spec` file. The environment contains everything from p4scl.spec packages.
 
 
-In Centos 8, install the EPEL and dnf plugins:
+On Centos 8, install the EPEL and dnf plugins:
 
 ```
 dnf install epel-release dnf-plugins-core
@@ -117,7 +117,7 @@ SCL build documentation: https://www.softwarecollections.org/en/docs/guide/
 
 ## Authors:
 
-* Pavel Benacek 
+* Pavel Benáček
 
 Contributions from other authors are welcomed!!
 
