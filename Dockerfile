@@ -3,14 +3,14 @@
 #
 # Author(s): Pavel Benacek <pavel.benacek@gmail.com>
 
-FROM centos:7
+FROM centos:8
 
 # Dependents to install
-ENV DEPS scl-utils scl-utils-build rpm-build devtoolset-6 wget binutils cmake3 git autoconf automake libtool python-pip libatomic_ops-devel bison flex openssl-devel boost169-devel boost-devel-static libffi-devel
+ENV DEPS autoconf automake binutils bison flex gcc gcc-c++ gdb glibc-devel libtool make pkgconf pkgconf-m4 pkgconf-pkg-config redhat-rpm-config rpm-build rpm-sign strace asciidoc byacc ctags diffstat git intltool jna ltrace patchutils perl-Fedora-VSP perl-generators pesign source-highlight systemtap valgrind valgrind-devel cmake expect rpmdevtools rpmlint scl-utils scl-utils-build wget binutils cmake python2-pip python3-pip openssl-devel boost169-devel boost169-static libffi-devel boost-devel python2-devel python36-devel Judy-devel libpcap-devel gc-devel
 
 # Install all dependencies
-RUN yum update -y && yum install -y centos-release-scl-rh epel-release
-RUN yum install -y $DEPS
+RUN dnf install -y epel-release dnf-plugins-core && dnf config-manager --set-enabled PowerTools && dnf module -y enable mariadb-devel
+RUN dnf install -y $DEPS
 
 # Prepare the directory
 RUN mkdir /centos-p4-scl.git

@@ -7,10 +7,9 @@
 %define debug_package %{nil}
 
 %global scl_name_prefix p4lang-
-%global scl_name_base p4-
-%global scl_name_version 1
+%global scl_name_base p4
 
-%global scl %{scl_name_prefix}%{scl_name_base}%{scl_name_version}
+%global scl %{scl_name_prefix}%{scl_name_base}
 
 %global scl_ipath %{buildroot}%{_scl_root}
 %global scl_bpath %{_builddir}/pkgbuild
@@ -25,14 +24,17 @@ Name: %scl_name
 Version: 1
 Release: 1%{?dist}
 License: GPLv3+
-BuildRequires: scl-utils-build devtoolset-6 wget binutils cmake3 git autoconf automake libtool python-pip boost169-devel libatomic_ops-devel bison flex openssl-devel boost-devel-static
-Requires: %scl_require devtoolset-6 
-Requires: scl-utils cmake3 doxygen python-pip python-setuptools automake Judy-devel gmp-devel libpcap-devel
-Requires: libevent-devel libtool flex pkgconfig openssl-devel python-devel readline-devel bison 
-Requires: autoconf libtool python-pip python36-scapy libatomic_ops-devel openssl-devel boost169-devel boost-devel-static
+# Tools for development
+Requires: autoconf automake binutils bison flex gcc gcc-c++ gdb glibc-devel libtool make cmake pkgconf pkgconf-m4 pkgconf-pkg-config
+Requires: redhat-rpm-config rpm-build rpm-sign strace asciidoc byacc ctags diffstat git intltool jna ltrace patchutils
+Requires:perl-Fedora-VSP perl-generators pesign source-highlight systemtap valgrind valgrind-devel expect rpmdevtools rpmlint
+Requires: scl-utils-build wget git python2-pip python3-pip boost169-devel libatomic_ops openssl-devel boost169-static boost
+Requires: scl-utils python2-setuptools python3-setuptools Judy-devel gmp-devel libpcap
+Requires: libevent-devel openssl-devel readline-devel libpcap-devel gc-devel python2-enum34
+Requires: python3-scapy  boost169-devel boost169-static boost python36-devel python2-devel python2-six python3-six
 
 %description
-This is the main package for %scl Software Collection which can be used on building of p4lang projects on Centos 7 without any container.
+This is the main package for %scl Software Collection which can be used on building of p4lang projects on Centos 8 without any container.
 
 %package runtime
 Summary: Package that handles %scl Software Collection.
@@ -55,7 +57,7 @@ Package shipping essential configuration macros to build %scl Software Collectio
 
 
 # Enable the environment and install all required libraries
-scl enable devtoolset-6 - << -EOF
+bash << -EOF
     set -e
     # Remove the build directory and create it again
     rm -rf %{scl_bpath}
@@ -72,10 +74,10 @@ scl enable devtoolset-6 - << -EOF
     pushd .
     wget -O thrift-0.11.0.tar.gz https://github.com/apache/thrift/archive/0.11.0.tar.gz
     tar -xzvf thrift-0.11.0.tar.gz
-    cd thrift* 
+    cd thrift-0.11.0 
     # Compile the program
     ./bootstrap.sh
-    ./configure --prefix=%{_scl_root}/usr --with-cpp
+    ./configure --prefix=%{_scl_root}/usr --with-cpp --disable-tests 
     make -j%{build_cpus}
     popd
 
@@ -107,18 +109,6 @@ scl enable devtoolset-6 - << -EOF
     make -j%{build_cpus} 
     popd
     
-    echo "#####################################################"
-    echo "Install new gc library"
-    echo "#####################################################"
-    pushd .
-    wget https://github.com/ivmai/bdwgc/releases/download/v7.4.18/gc-7.4.18.tar.gz
-    tar -xvzf gc-7.4.18.tar.gz
-    cd gc-7.4.18
-    bash autogen.sh
-    ./configure --prefix=%{_scl_root}/usr --enable-cplusplus --enable-parallel-mark --enable-sigrt-signals
-    make -j%{build_cpus}
-    popd
-
 -EOF
 
 
@@ -129,7 +119,7 @@ scl enable devtoolset-6 - << -EOF
 # Install libs & tools
 
 # Some libs requires a g++ during install :/
-scl enable devtoolset-6 - << -EOF
+bash << -EOF
     set -e
     
     export CXXFLAGS="-g0 -O2" 
@@ -146,7 +136,6 @@ scl enable devtoolset-6 - << -EOF
     (cd thrift-0.11.0; %make_install;)
     (cd nanomsg-1.0.0/build; %make_install)
     (cd protobuf; %make_install)
-    (cd gc-7.4.18; %make_install)
 
 -EOF
 
@@ -154,8 +143,6 @@ scl enable devtoolset-6 - << -EOF
 # Preare the enable file
 
 cat >> %{buildroot}%{_scl_scripts}/enable << -EOF
-# Enable the environment for the build 
-source scl_source enable devtoolset-6
 # Enable the remaining parts for the P4 scl
 export PATH="%{_bindir}:%{_sbindir}\${PATH:+:\${PATH}}"
 export LIBRARY_PATH="/usr/lib64/boost169:/usr/local/lib:/usr/local/lib64:%{_libdir}:%{_scl_root}/usr/lib\${LIBRARY_PATH:+:\${LIBRARY_PATH}}"
@@ -167,12 +154,8 @@ export C_INCLUDE_PATH="/usr/local/include:%{_scl_root}/usr/include\${C_INCLUDE_P
 export CPLUS_INCLUDE_PATH="/usr/local/include:%{_scl_root}/usr/include\${CPLUS_INCLUDE_PATH:+:\${CPLUS_INCLUDE_PATH}}"
 
 # Setup boost environment to newest version
-export BOOST_INCLUDEDIR=/usr/include/boost169
-export BOOST_LIBRARYDIR=/usr/lib64/boost169
-
-echo "*************************************************************************"
-echo "WARNING: Use cmake3 instead of cmake"
-echo "*************************************************************************"
+#export BOOST_INCLUDEDIR=/usr/include/boost169
+#export BOOST_LIBRARYDIR=/usr/lib64/boost169
 
 -EOF
 
@@ -188,6 +171,9 @@ echo "*************************************************************************"
 %{_root_sysconfdir}/rpm/macros.%{scl}-config
 
 %changelog
+* Tue Apr 28 2020 Pavel Benacek %lt;pavel.benacek@gmail.com&gt; 1-2
+- Transformation of the spec file to Centos 8
+
 * Thu Feb 20 2020 Pavel Benacek %lt;pavel.benacek@gmail.com&gt; 1-1
 - Update of enable script
 
