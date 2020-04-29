@@ -31,8 +31,7 @@ Requires:perl-Fedora-VSP perl-generators pesign source-highlight systemtap valgr
 Requires: scl-utils-build wget git python2-pip python3-pip boost169-devel libatomic_ops openssl-devel boost169-static boost
 Requires: scl-utils python2-setuptools python3-setuptools Judy-devel gmp-devel libpcap
 Requires: libevent-devel openssl-devel readline-devel libpcap-devel gc-devel
-
-Requires: python3-scapy  boost169-devel boost169-static boost python36-devel python2-devel
+Requires: python3-scapy  boost169-devel boost169-static boost python36-devel python2-devel python2-six python3-six
 
 %description
 This is the main package for %scl Software Collection which can be used on building of p4lang projects on Centos 8 without any container.
