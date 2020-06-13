@@ -17,6 +17,10 @@ os:
 services:
     - docker
 
+# Update docker image
+before_install:
+    - docker pull centos:8
+
 # Prepare the docker image in installation stage
 install:
     - docker build -t localhost/centos-p4-scl .
