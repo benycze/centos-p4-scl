@@ -13,6 +13,8 @@ branches:
 os:
     -linux
 
+language: bash
+
 # Allow docker to run tests inside it
 services:
     - docker
