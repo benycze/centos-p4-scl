@@ -29,7 +29,7 @@ Requires: autoconf automake binutils bison flex gcc gcc-c++ gdb glibc-devel libt
 Requires: redhat-rpm-config rpm-build rpm-sign strace asciidoc byacc ctags diffstat git intltool jna ltrace patchutils
 Requires:perl-Fedora-VSP perl-generators pesign source-highlight systemtap valgrind valgrind-devel expect rpmdevtools rpmlint
 Requires: scl-utils-build wget git python2-pip python3-pip boost169-devel libatomic_ops openssl-devel boost169-static boost
-Requires: scl-utils python2-setuptools python3-setuptools Judy-devel gmp-devel libpcap
+Requires: scl-utils python2-setuptools python3-setuptools gmp-devel libpcap
 Requires: libevent-devel openssl-devel readline-devel libpcap-devel gc-devel python2-enum34
 Requires: python3-scapy  boost169-devel boost169-static boost python36-devel python2-devel python2-six python3-six
 
@@ -66,11 +66,24 @@ bash << -EOF
     export CXXFLAGS="-g0 -O2" 
     export CFLAGS="-g0 -O2" 
     export PY_PREFIX=%{_scl_root}/usr
+    
+    cd %{scl_bpath}
+
+    echo "#####################################################"
+    echo "Build the Judy library"
+    echo "#####################################################"
+    pushd . 
+    wget -O judy.zip https://github.com/threatstack/judy/archive/master.zip
+    unzip judy.zip
+    cd judy-master
+    ./configure 
+    make
+    popd
 
     echo "#####################################################"
     echo "Build the thrift library"
     echo "#####################################################"
-    cd %{scl_bpath}
+
     pushd .
     wget -O thrift-0.11.0.tar.gz https://github.com/apache/thrift/archive/0.11.0.tar.gz
     tar -xzvf thrift-0.11.0.tar.gz
@@ -133,6 +146,7 @@ bash << -EOF
     cd %{scl_bpath}
     
     # Install compiled stuff 
+    (cd judy-master; %make_install)
     (cd thrift-0.11.0; %make_install;)
     (cd nanomsg-1.0.0/build; %make_install)
     (cd protobuf; %make_install)
@@ -171,6 +185,9 @@ export CPLUS_INCLUDE_PATH="/usr/local/include:%{_scl_root}/usr/include\${CPLUS_I
 %{_root_sysconfdir}/rpm/macros.%{scl}-config
 
 %changelog
+* Sat Jun 20 2020 Pavel Benacek %lt;pavel.benacek@gmail.com&; 1-3
+- Changes to support the new Centos 8.2
+
 * Tue Apr 28 2020 Pavel Benacek %lt;pavel.benacek@gmail.com&gt; 1-2
 - Transformation of the spec file to Centos 8
 

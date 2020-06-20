@@ -1,4 +1,4 @@
-# SCL P4 Repository with the SCL environment
+# SCL P4 Repository with the SCL environment 
 
 [![Build Status](https://travis-ci.com/benycze/centos-p4-scl.svg?branch=master)](https://travis-ci.com/benycze/centos-p4-scl)
   
@@ -11,7 +11,7 @@ Currently, the environment allows to build and use:
 
 ## How to build packages
 
-*This SCL environment is prepared for the Centos 8 Release*
+*This SCL environment is prepared for the Centos 8.2 Release*
 
 The following dependencies are required to build RPM packages (this is typical development tools on Centos):
 * autoconf
@@ -78,17 +78,16 @@ On Centos 8, install the EPEL and dnf plugins:
 dnf install epel-release dnf-plugins-core
 ```
 
-We also need to enable the PowerTools repository and mariadb-devel module (to get some libs):
+We also need to enable the PowerTools repository (to get some libs):
 
 ```
 dnf config-manager --set-enabled PowerTools
-dnf module enable mariadb-devel
 ```
 
 Install following packages which are required for the build:
 
 ```
-dnf install autoconf automake binutils bison flex gcc gcc-c++ gdb glibc-devel libtool make pkgconf pkgconf-m4 pkgconf-pkg-config redhat-rpm-config rpm-build rpm-sign strace asciidoc byacc ctags diffstat git intltool jna ltrace patchutils perl-Fedora-VSP perl-generators pesign source-highlight systemtap valgrind valgrind-devel cmake expect rpmdevtools rpmlint scl-utils scl-utils-build wget binutils cmake python2-pip python3-pip openssl-devel boost169-devel boost169-static libffi-devel boost-devel python36-devel python2-devel Judy-devel libpcap-devel gc-devel
+dnf install autoconf automake binutils bison flex gcc gcc-c++ gdb glibc-devel libtool make pkgconf pkgconf-m4 pkgconf-pkg-config redhat-rpm-config rpm-build rpm-sign strace asciidoc byacc ctags diffstat git intltool jna ltrace patchutils perl-Fedora-VSP perl-generators pesign source-highlight systemtap valgrind valgrind-devel cmake expect rpmdevtools rpmlint scl-utils scl-utils-build wget binutils cmake python2-pip python3-pip openssl-devel boost169-devel boost169-static libffi-devel boost-devel python36-devel python2-devel libpcap-devel gc-devel
 ```
 
 The P4 Environment package can be builded like following:
@@ -122,4 +121,3 @@ SCL build documentation: https://www.softwarecollections.org/en/docs/guide/
 Contributions from other authors are welcomed!!
 
 P.S. Sorry if something is not perfect but I am using the [Debian](https://www.debian.org) and this is one of my first attemps for RPMs :-). If you want to improve something, feel free to send me a merge request ;-).
-
