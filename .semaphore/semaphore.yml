@@ -15,10 +15,10 @@ fail_fast:
     when: "true"  # enable strategy for branches, tags, and pull-requests
 
 blocks:
-  - name: "Build & test"
+  - name: "Build & Test"
     task:
       jobs:
-        - name: Build the image
+        - name: Build & Test the Image
           commands:
             - checkout
             - docker pull centos:8
