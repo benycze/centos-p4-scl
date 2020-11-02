@@ -1,0 +1,27 @@
+# Copyright 2020 by the project contributors
+# SPDX-License-Identifier: GPL-3.0-only
+#
+# Author(s): Pavel Benacek <pavel.benacek@gmail.com>
+
+version: v1.0
+name: Ubuntu18 Based Pipeline
+agent:
+  machine:
+    type: e1-standard-2    # Linux machine type with 2 vCPUs, 4 GB of RAM
+    os_image: ubuntu1804   # The Ubuntu 18.04 OS image.
+
+fail_fast:
+  stop:
+    when: "true"  # enable strategy for branches, tags, and pull-requests
+
+blocks:
+  - name: "Build & test"
+    task:
+      jobs:
+        - name: Build the image
+          commands:
+            - checkout
+            - docker pull centos:8
+            - docker build -t localhost/centos-p4-scl .
+            - docker run -w /centos-p4-scl.git localhost/centos-p4-scl /bin/bash -c "cd /centos-p4-scl.git && ./compile-and-install.sh" 
+
