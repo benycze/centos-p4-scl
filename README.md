@@ -81,7 +81,7 @@ dnf install epel-release dnf-plugins-core
 We also need to enable the PowerTools repository (to get some libs):
 
 ```
-dnf config-manager --set-enabled PowerTools
+dnf config-manager --set-enabled powertools
 ```
 
 Install following packages which are required for the build:
