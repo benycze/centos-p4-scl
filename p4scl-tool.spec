@@ -92,7 +92,7 @@ scl enable p4lang-p4 - << -EOF
     cd p4c.git
     mkdir build 
     cd build
-    cmake3 -DCMAKE_INSTALL_PREFIX=%{_scl_root}/usr -DCMAKE_BUILD_TYPE=Release ..
+    cmake -DCMAKE_INSTALL_PREFIX=%{_scl_root}/usr -DCMAKE_BUILD_TYPE=Release ..
     make -j%{build_cpus}
     popd 
 

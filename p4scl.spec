@@ -73,9 +73,9 @@ bash << -EOF
     echo "Build the Judy library"
     echo "#####################################################"
     pushd . 
-    wget -O judy.zip https://github.com/threatstack/judy/archive/master.zip
-    unzip judy.zip
-    cd judy-master
+    wget -O judy.tar.gz https://sourceforge.net/projects/judy/files/judy/Judy-1.0.5/Judy-1.0.5.tar.gz/download
+    tar -xvzf judy.tar.gz
+    cd judy-1.0.5
     ./configure 
     make
     popd
@@ -106,7 +106,7 @@ bash << -EOF
     cd nanomsg-1.0.0
     mkdir build 
     cd build
-    cmake3 -DCMAKE_INSTALL_PREFIX=/usr/local -DCMAKE_BUILD_TYPE=Release ..
+    cmake -DCMAKE_INSTALL_PREFIX=/usr/local -DCMAKE_BUILD_TYPE=Release ..
     make -j%{build_cpus}
     popd
 
@@ -146,7 +146,7 @@ bash << -EOF
     cd %{scl_bpath}
     
     # Install compiled stuff 
-    (cd judy-master; %make_install)
+    (cd judy-1.0.5; %make_install)
     (cd thrift-0.11.0; %make_install;)
     (cd nanomsg-1.0.0/build; %make_install)
     (cd protobuf; %make_install)
@@ -185,6 +185,9 @@ export CPLUS_INCLUDE_PATH="/usr/local/include:%{_scl_root}/usr/include\${CPLUS_I
 %{_root_sysconfdir}/rpm/macros.%{scl}-config
 
 %changelog
+* Fri  Apr 2 2021 Pavel Benacek %lt;pavel.benacek@gmail.com&; 1-4
+- Changes to support the Centos Stream
+
 * Sat Jun 20 2020 Pavel Benacek %lt;pavel.benacek@gmail.com&; 1-3
 - Changes to support the new Centos 8.2
 

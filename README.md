@@ -11,7 +11,7 @@ Currently, the environment allows to build and use:
 
 ## How to build packages
 
-*This SCL environment is prepared for the Centos 8.2 Release*
+*This SCL environment is prepared for the Centos Stream Release*
 
 The following dependencies are required to build RPM packages (this is typical development tools on Centos):
 * autoconf
@@ -64,7 +64,6 @@ The following dependencies are required to build RPM packages (this is typical d
 * boosti169-static
 * libffi-devel
 * boost-devel
-
 
 Currently available spec files:
 
